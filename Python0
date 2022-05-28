@@ -1,0 +1,98 @@
+# Найти сумму чисел списка стоящих на нечетной позиции.
+
+
+def sum_odd_index(lst):
+    s = 0
+    for i in range(len(lst)):
+        if i % 2 != 0:
+            s += lst[i]
+    print(f"Сумма равна: {s}")
+
+lst = [1, 2, 3, 4]
+sum_odd_index(lst)
+lst = list(map(int, input("Введите числа через пробел:\n").split()))
+sum_odd_index(lst)
+
+
+# Найти произведение пар чисел в списке. Парой считаем первый и последний элемент, второй и предпоследний.
+
+
+def mul_lst(lst):
+    l = len(lst)//2 + 1 if len(lst) % 2 != 0 else len(lst)//2
+    new_lst = [lst[i]*lst[len(lst)-i-1] for i in range(l)]
+    print(new_lst)
+
+lst = [2, 3, 4, 5, 6]
+mul_lst(lst)
+lst = list(map(int, input("Введите числа через пробел:\n").split()))
+mul_lst(lst)
+
+
+# В заданном списке вещественных чисел найдите разницу между максимальным и минимальным значением дробной части элементов.
+
+
+lst = list(map(float, input("Введите числа через пробел:\n").split()))
+new_lst = [round(i % 1, 2) for i in lst if i % 1 != 0]
+print(max(new_lst) - min(new_lst))
+
+
+# Написать программу преобразования десятичного числа в двоичное.
+
+
+s = ''
+n = int(input("Введите число для преобразования десятичного числа в двоичное:\n"))
+while n > 0:
+    s = str(n % 2) + s
+    n = n // 2
+print(s)
+
+
+# Написать программу преобразования двоичного числа в десятичное.
+
+
+def func(n):
+    print(int(n, base = 2))
+if __name__ == '__main__':
+    n=input()
+    func(n)
+    
+ 
+    
+# Каждый следующий элемент ряда Фибоначчи получается при сложении двух предыдущих. Начиная с 1 и 2, первые 10 элементов будут:
+1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
+# Найдите сумму всех четных элементов ряда Фибоначчи, которые не превышают четыре миллиона.
+
+
+
+fib_seq = {}
+
+def fib_iterative(n):
+    if n in fib_seq.keys():
+        return fib_seq[n]
+    a, b, x = 0, 1, n
+    while x > 0:
+        a, b = b, a + b
+        x -= 1
+    fib_seq[n] = a
+    return a
+
+sum = 0
+last_fib = i = 0
+while last_fib <= 4000000:
+    last_fib = fib_iterative(i)
+    if last_fib % 2 == 0:
+        sum += last_fib
+    i += 1
+
+print(sum)
+
+
+f=[1,2]
+i=2
+a=0
+while f[i]<4000000:
+    f.append(f[i-1]+f[i-2])
+    i += 1
+    a = f[i]
+res = filter(lambda x:x % 2==0, f)
+print(sum(res))
